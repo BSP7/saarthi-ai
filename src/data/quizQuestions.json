@@ -1,0 +1,8 @@
+[
+  {"question":"You enjoy solving logical puzzles.","options":[{"label":"Strongly Agree","weight":5},{"label":"Agree","weight":4},{"label":"Neutral","weight":3},{"label":"Disagree","weight":2},{"label":"Strongly Disagree","weight":1}]},
+  {"question":"You like helping people directly.","options":[{"label":"Strongly Agree","weight":5},{"label":"Agree","weight":4},{"label":"Neutral","weight":3},{"label":"Disagree","weight":2},{"label":"Strongly Disagree","weight":1}]},
+  {"question":"You prefer working with numbers.","options":[{"label":"Strongly Agree","weight":5},{"label":"Agree","weight":4},{"label":"Neutral","weight":3},{"label":"Disagree","weight":2},{"label":"Strongly Disagree","weight":1}]},
+  {"question":"You enjoy creative activities.","options":[{"label":"Strongly Agree","weight":5},{"label":"Agree","weight":4},{"label":"Neutral","weight":3},{"label":"Disagree","weight":2},{"label":"Strongly Disagree","weight":1}]},
+  {"question":"You like researching topics in depth.","options":[{"label":"Strongly Agree","weight":5},{"label":"Agree","weight":4},{"label":"Neutral","weight":3},{"label":"Disagree","weight":2},{"label":"Strongly Disagree","weight":1}]},
+  {"question":"You are comfortable speaking to groups.","options":[{"label":"Strongly Agree","weight":5},{"label":"Agree","weight":4},{"label":"Neutral","weight":3},{"label":"Disagree","weight":2},{"label":"Strongly Disagree","weight":1}]}
+]

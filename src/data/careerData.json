@@ -1,0 +1,65 @@
+{
+  "higherEducation": {
+    "engineering": {
+      "starter": [
+        { "title": "Diploma in Engineering", "description": "Foundation in core engineering concepts.", "improve": "Focus on Math and Physics basics." },
+        { "title": "B.Sc. in Computer Science", "description": "Entry into software and IT fields." }
+      ],
+      "moderate": [
+        { "title": "B.E./B.Tech - CSE/ECE/ME", "description": "Undergraduate degree with specialization.", "improve": "Practice problem-solving and coding." },
+        { "title": "Integrated B.Sc.-M.Sc.", "description": "Strong academic track with research exposure." }
+      ],
+      "strong": [
+        { "title": "B.Tech + Honors/Minor", "description": "Advanced curriculum at reputed institutes.", "improve": "Participate in Olympiads and projects." },
+        { "title": "IIT/NIT Preparation", "description": "Aim for top-tier institutions in India." }
+      ]
+    },
+    "medicine": {
+      "starter": [
+        { "title": "B.Sc. Nursing/Allied Health", "description": "Healthcare roles with patient care." }
+      ],
+      "moderate": [
+        { "title": "BAMS/BHMS/BPT", "description": "Professional healthcare degrees.", "improve": "Strengthen Biology and Chemistry." }
+      ],
+      "strong": [
+        { "title": "MBBS", "description": "Primary medical degree.", "improve": "Target NEET with structured prep." }
+      ]
+    },
+    "commerce": {
+      "starter": [
+        { "title": "B.Com General", "description": "Foundation in commerce and accounting." }
+      ],
+      "moderate": [
+        { "title": "BBA/BBM", "description": "Business management track.", "improve": "Develop communication skills." }
+      ],
+      "strong": [
+        { "title": "B.Com (Hons)/CA Foundation", "description": "Advanced commerce with professional path." }
+      ]
+    },
+    "arts": {
+      "starter": [
+        { "title": "BA General", "description": "Broad humanities education." }
+      ],
+      "moderate": [
+        { "title": "BA (Psychology/Economics)", "description": "Specialization with skills focus." }
+      ],
+      "strong": [
+        { "title": "BA + Civil Services Prep", "description": "Pathway to public administration." }
+      ]
+    }
+  },
+  "careers": {
+    "creative": [
+      { "title": "Graphic Designer", "description": "Visual design for digital and print.", "improve": "Build a portfolio on real problems." },
+      { "title": "Content Writer", "description": "Write for blogs, SEO, and media." }
+    ],
+    "balanced": [
+      { "title": "Marketing Analyst", "description": "Combine data with storytelling." },
+      { "title": "Product Manager (Junior)", "description": "Cross-functional coordination." }
+    ],
+    "analytical": [
+      { "title": "Software Developer", "description": "Build web and mobile apps.", "improve": "Practice DSA and projects." },
+      { "title": "Data Analyst", "description": "Analyze data for decision-making." }
+    ]
+  }
+}

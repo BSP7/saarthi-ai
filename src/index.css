@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Simple base styling */
+html, body, #root { height: 100%; }
+body { @apply bg-gray-50 text-gray-800; }
+.container { @apply max-w-3xl mx-auto px-4; }
+.card { @apply bg-white shadow rounded-lg p-6; }
+.btn { @apply inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 transition; }
+.btn-secondary { @apply inline-flex items-center justify-center rounded-md bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300 transition; }
+.select { @apply border rounded px-3 py-2; }
+.input { @apply border rounded px-3 py-2 w-full; }
+.label { @apply block text-sm font-medium mb-1; }

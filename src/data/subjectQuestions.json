@@ -1,0 +1,30 @@
+{
+  "engineering": [
+    {"question":"How confident are you with algebra?","options":[{"label":"Very","weight":5},{"label":"Good","weight":4},{"label":"Average","weight":3},{"label":"Low","weight":2},{"label":"Very Low","weight":1}]},
+    {"question":"Do you enjoy physics experiments?","options":[{"label":"Very","weight":5},{"label":"Good","weight":4},{"label":"Average","weight":3},{"label":"Low","weight":2},{"label":"Very Low","weight":1}]},
+    {"question":"Rate your coding interest.","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]},
+    {"question":"Comfort with geometry?","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]},
+    {"question":"Problem-solving stamina?","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]}
+  ],
+  "medicine": [
+    {"question":"Interest in biology?","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]},
+    {"question":"Comfort with memorization?","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]},
+    {"question":"Empathy for patients?","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]},
+    {"question":"Chemistry understanding?","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]},
+    {"question":"Handling pressure (exams)?","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]}
+  ],
+  "commerce": [
+    {"question":"Interest in business/news?","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]},
+    {"question":"Accounting comfort?","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]},
+    {"question":"Numerical aptitude?","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]},
+    {"question":"Communication skills?","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]},
+    {"question":"Teamwork preference?","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]}
+  ],
+  "arts": [
+    {"question":"Interest in literature/history?","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]},
+    {"question":"Critical thinking comfort?","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]},
+    {"question":"Creative expression?","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]},
+    {"question":"Writing skills?","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]},
+    {"question":"Public speaking?","options":[{"label":"High","weight":5},{"label":"Medium","weight":3},{"label":"Low","weight":1}]}
+  ]
+}
