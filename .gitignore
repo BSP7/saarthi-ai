@@ -45,5 +45,18 @@ coverage/
 *.pem
 *.key
 
+# --- Python & Backend ---
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- Machine Learning Models & Data ---
+# Ignore large model binaries to prevent repository bloat
+backend/ml_models/*.pkl
+# Ignore raw Excel datasets
+datasets/raw/onet/*.xlsx
 # CI/test artifacts
 junit.xml

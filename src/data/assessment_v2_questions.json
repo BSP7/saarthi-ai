@@ -1,0 +1,400 @@
+{
+  "questions": [
+    {
+      "id": "Q001",
+      "question": "I enjoy working with my hands, tools, or machines.",
+      "feature": "Realistic",
+      "weight": 1
+    },
+    {
+      "id": "Q002",
+      "question": "I prefer practical tasks over theoretical discussions.",
+      "feature": "Realistic",
+      "weight": 1
+    },
+    {
+      "id": "Q003",
+      "question": "I like fixing or building things.",
+      "feature": "Realistic",
+      "weight": 1
+    },
+    {
+      "id": "Q004",
+      "question": "I enjoy solving difficult problems.",
+      "feature": "Investigative",
+      "weight": 1
+    },
+    {
+      "id": "Q005",
+      "question": "I like understanding how systems work.",
+      "feature": "Investigative",
+      "weight": 1
+    },
+    {
+      "id": "Q006",
+      "question": "I enjoy scientific research and experimentation.",
+      "feature": "Investigative",
+      "weight": 1
+    },
+    {
+      "id": "Q007",
+      "question": "I enjoy expressing ideas creatively.",
+      "feature": "Artistic",
+      "weight": 1
+    },
+    {
+      "id": "Q008",
+      "question": "I like creating original designs or art.",
+      "feature": "Artistic",
+      "weight": 1
+    },
+    {
+      "id": "Q009",
+      "question": "I prefer tasks that allow for imagination and creativity.",
+      "feature": "Artistic",
+      "weight": 1
+    },
+    {
+      "id": "Q010",
+      "question": "I enjoy helping and teaching others.",
+      "feature": "Social",
+      "weight": 1
+    },
+    {
+      "id": "Q011",
+      "question": "I like working in teams and collaborating.",
+      "feature": "Social",
+      "weight": 1
+    },
+    {
+      "id": "Q012",
+      "question": "I care about improving the lives of people around me.",
+      "feature": "Social",
+      "weight": 1
+    },
+    {
+      "id": "Q013",
+      "question": "I like leading projects and making decisions.",
+      "feature": "Enterprising",
+      "weight": 1
+    },
+    {
+      "id": "Q014",
+      "question": "I enjoy persuading others or selling ideas.",
+      "feature": "Enterprising",
+      "weight": 1
+    },
+    {
+      "id": "Q015",
+      "question": "I am comfortable taking risks to achieve goals.",
+      "feature": "Enterprising",
+      "weight": 1
+    },
+    {
+      "id": "Q016",
+      "question": "I prefer following clear procedures and routines.",
+      "feature": "Conventional",
+      "weight": 1
+    },
+    {
+      "id": "Q017",
+      "question": "I am highly organized and detail-oriented.",
+      "feature": "Conventional",
+      "weight": 1
+    },
+    {
+      "id": "Q018",
+      "question": "I enjoy working with numbers or structured data.",
+      "feature": "Conventional",
+      "weight": 1
+    },
+    {
+      "id": "Q019",
+      "question": "I evaluate multiple solutions before making decisions.",
+      "feature": "Critical Thinking",
+      "weight": 1
+    },
+    {
+      "id": "Q020",
+      "question": "I question assumptions before accepting conclusions.",
+      "feature": "Critical Thinking",
+      "weight": 1
+    },
+    {
+      "id": "Q021",
+      "question": "I enjoy learning how software and code work.",
+      "feature": "Programming",
+      "weight": 1
+    },
+    {
+      "id": "Q022",
+      "question": "I find writing scripts or algorithms interesting.",
+      "feature": "Programming",
+      "weight": 1
+    },
+    {
+      "id": "Q023",
+      "question": "I pay close attention when others are speaking to me.",
+      "feature": "Active Listening",
+      "weight": 1
+    },
+    {
+      "id": "Q024",
+      "question": "I often ask clarifying questions to ensure I understand someone.",
+      "feature": "Active Listening",
+      "weight": 1
+    },
+    {
+      "id": "Q025",
+      "question": "I easily understand complex written documents or articles.",
+      "feature": "Reading Comprehension",
+      "weight": 1
+    },
+    {
+      "id": "Q026",
+      "question": "I enjoy reading detailed reports to gather information.",
+      "feature": "Reading Comprehension",
+      "weight": 1
+    },
+    {
+      "id": "Q027",
+      "question": "I can clearly articulate my thoughts to an audience.",
+      "feature": "Speaking",
+      "weight": 1
+    },
+    {
+      "id": "Q028",
+      "question": "I am comfortable presenting information verbally.",
+      "feature": "Speaking",
+      "weight": 1
+    },
+    {
+      "id": "Q029",
+      "question": "I can write clear, concise, and persuasive texts.",
+      "feature": "Writing",
+      "weight": 1
+    },
+    {
+      "id": "Q030",
+      "question": "I prefer communicating complex ideas through writing.",
+      "feature": "Writing",
+      "weight": 1
+    },
+    {
+      "id": "Q031",
+      "question": "I enjoy untangling complicated, multi-step problems.",
+      "feature": "Complex Problem Solving",
+      "weight": 1
+    },
+    {
+      "id": "Q032",
+      "question": "I can identify hidden patterns when troubleshooting.",
+      "feature": "Complex Problem Solving",
+      "weight": 1
+    },
+    {
+      "id": "Q033",
+      "question": "I can confidently choose a course of action under pressure.",
+      "feature": "Decision Making",
+      "weight": 1
+    },
+    {
+      "id": "Q034",
+      "question": "I weigh the pros and cons carefully before acting.",
+      "feature": "Decision Making",
+      "weight": 1
+    },
+    {
+      "id": "Q035",
+      "question": "I can apply general rules to solve specific problems.",
+      "feature": "Deductive Reasoning",
+      "weight": 1
+    },
+    {
+      "id": "Q036",
+      "question": "I can identify logical conclusions from a set of facts.",
+      "feature": "Deductive Reasoning",
+      "weight": 1
+    },
+    {
+      "id": "Q037",
+      "question": "I can combine separate pieces of information to form a general rule.",
+      "feature": "Inductive Reasoning",
+      "weight": 1
+    },
+    {
+      "id": "Q038",
+      "question": "I am good at finding a common theme among seemingly unrelated events.",
+      "feature": "Inductive Reasoning",
+      "weight": 1
+    },
+    {
+      "id": "Q039",
+      "question": "I can quickly sense when something is wrong or likely to go wrong.",
+      "feature": "Problem Sensitivity",
+      "weight": 1
+    },
+    {
+      "id": "Q040",
+      "question": "I am proactive in noticing issues before they escalate.",
+      "feature": "Problem Sensitivity",
+      "weight": 1
+    },
+    {
+      "id": "Q041",
+      "question": "I easily understand instructions spoken to me.",
+      "feature": "Oral Comprehension",
+      "weight": 1
+    },
+    {
+      "id": "Q042",
+      "question": "I can follow fast-paced verbal discussions.",
+      "feature": "Oral Comprehension",
+      "weight": 1
+    },
+    {
+      "id": "Q043",
+      "question": "I can quickly choose the right mathematical methods to solve a problem.",
+      "feature": "Mathematical Reasoning",
+      "weight": 1
+    },
+    {
+      "id": "Q044",
+      "question": "I enjoy figuring out numerical puzzles or logic.",
+      "feature": "Mathematical Reasoning",
+      "weight": 1
+    },
+    {
+      "id": "Q045",
+      "question": "I am good at arranging things or actions in a certain order or pattern.",
+      "feature": "Information Ordering",
+      "weight": 1
+    },
+    {
+      "id": "Q046",
+      "question": "I enjoy creating step-by-step sequential plans.",
+      "feature": "Information Ordering",
+      "weight": 1
+    },
+    {
+      "id": "Q047",
+      "question": "I can easily imagine how something will look after it is moved or rearranged.",
+      "feature": "Visualization",
+      "weight": 1
+    },
+    {
+      "id": "Q048",
+      "question": "I am good at reading maps and visualizing spatial relationships.",
+      "feature": "Visualization",
+      "weight": 1
+    },
+    {
+      "id": "Q049",
+      "question": "I can concentrate on a task without being distracted by my surroundings.",
+      "feature": "Selective Attention",
+      "weight": 1
+    },
+    {
+      "id": "Q050",
+      "question": "I am able to tune out background noise when focusing.",
+      "feature": "Selective Attention",
+      "weight": 1
+    },
+    {
+      "id": "Q051",
+      "question": "I enjoy learning about computer hardware and networks.",
+      "feature": "Computers and Electronics",
+      "weight": 1
+    },
+    {
+      "id": "Q052",
+      "question": "I am interested in how electronic devices work.",
+      "feature": "Computers and Electronics",
+      "weight": 1
+    },
+    {
+      "id": "Q053",
+      "question": "I am interested in arithmetic, algebra, geometry, or calculus.",
+      "feature": "Mathematics",
+      "weight": 1
+    },
+    {
+      "id": "Q054",
+      "question": "I enjoy applying mathematical formulas to real-world scenarios.",
+      "feature": "Mathematics",
+      "weight": 1
+    },
+    {
+      "id": "Q055",
+      "question": "I am fascinated by how machines, structures, and systems are designed.",
+      "feature": "Engineering and Technology",
+      "weight": 1
+    },
+    {
+      "id": "Q056",
+      "question": "I enjoy learning about the practical application of engineering principles.",
+      "feature": "Engineering and Technology",
+      "weight": 1
+    },
+    {
+      "id": "Q057",
+      "question": "I am interested in business management and administration.",
+      "feature": "Business",
+      "weight": 1
+    },
+    {
+      "id": "Q058",
+      "question": "I enjoy learning about economics, marketing, and business strategy.",
+      "feature": "Business",
+      "weight": 1
+    },
+    {
+      "id": "Q059",
+      "question": "I am interested in human behavior and mental processes.",
+      "feature": "Psychology",
+      "weight": 1
+    },
+    {
+      "id": "Q060",
+      "question": "I enjoy learning why people think and act the way they do.",
+      "feature": "Psychology",
+      "weight": 1
+    },
+    {
+      "id": "Q061",
+      "question": "I am interested in principles and methods for teaching and learning.",
+      "feature": "Education and Training",
+      "weight": 1
+    },
+    {
+      "id": "Q062",
+      "question": "I enjoy learning how to design educational curriculums.",
+      "feature": "Education and Training",
+      "weight": 1
+    },
+    {
+      "id": "Q063",
+      "question": "I am fascinated by human anatomy and medical treatments.",
+      "feature": "Medicine and Health",
+      "weight": 1
+    },
+    {
+      "id": "Q064",
+      "question": "I enjoy learning about healthcare and diagnosing illnesses.",
+      "feature": "Medicine and Health",
+      "weight": 1
+    },
+    {
+      "id": "Q065",
+      "question": "I am interested in media, broadcasting, or public relations.",
+      "feature": "Communications",
+      "weight": 1
+    },
+    {
+      "id": "Q066",
+      "question": "I enjoy learning about the different ways information is disseminated.",
+      "feature": "Communications",
+      "weight": 1
+    }
+  ]
+}
