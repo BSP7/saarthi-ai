@@ -1,108 +1,145 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import subjectQuestions from '../data/subjectQuestions.json'
-import quizQuestions from '../data/quizQuestions.json'
+import assessmentData from '../data/assessment_v2_questions.json'
+import { calculateV2Profile } from '../utils/assessmentScorerV2'
 
-// Simple scoring: sum of selected option weights
+const SECTIONS = [
+  { id: 'interests', title: 'RIASEC Interests', start: 0, end: 18 },
+  { id: 'skills', title: 'Essential Skills', start: 18, end: 34 },
+  { id: 'abilities', title: 'Abilities', start: 34, end: 50 },
+  { id: 'knowledge', title: 'Knowledge Areas', start: 50, end: 66 }
+]
+
 export default function Quiz() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const location = useLocation()
+  
+  const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState({})
 
-  // try to recover from sessionStorage if user refreshed mid-flow
-  const stored = (() => {
-    try { return JSON.parse(sessionStorage.getItem('saarthi_state')) } catch (e) { return null }
-  })()
-
-  const mode = location.state?.mode || stored?.mode || 'completed'
-  const marksPayload = location.state?.payload || stored?.payload
-
-  const questions = useMemo(() => {
-    if (mode === 'studying') {
-      // Pick subject-based questions relevant to marks and goal
-      const goal = marksPayload?.goal || 'engineering'
-      const pool = subjectQuestions[goal] || []
-      return pool.slice(0, 5)
-    }
-    return quizQuestions.slice(0, 6)
-  }, [mode, marksPayload])
-
+  // Try to recover state
   useEffect(() => {
-    if (!questions.length) return
-    // Pre-fill answers with null and try to restore saved answers
-    const init = {}
-    questions.forEach((q, idx) => { init[idx] = null })
-    let saved = null
-    try { saved = JSON.parse(sessionStorage.getItem('saarthi_answers')) } catch (e) { saved = null }
-    if (saved) {
-      // only restore keys that exist in current question set
-      Object.keys(init).forEach((k) => { if (saved[k] != null) init[k] = saved[k] })
-    }
-    setAnswers(init)
-  }, [questions])
+    try {
+      const savedAnswers = JSON.parse(sessionStorage.getItem('saarthi_v2_answers'))
+      const savedStep = parseInt(sessionStorage.getItem('saarthi_v2_step'), 10)
+      if (savedAnswers) setAnswers(savedAnswers)
+      if (!isNaN(savedStep)) setCurrentStep(savedStep)
+    } catch (e) {}
+  }, [])
 
-  const allAnswered = Object.values(answers).every((v) => v !== null)
+  const currentSection = SECTIONS[currentStep]
+  const currentQuestions = assessmentData.questions.slice(currentSection.start, currentSection.end)
 
-  const handleSelect = (qIndex, weight) => {
-    setAnswers((a) => {
-      const next = { ...a, [qIndex]: weight }
-      try { sessionStorage.setItem('saarthi_answers', JSON.stringify(next)) } catch (e) { }
+  const handleSelect = (qId, weight) => {
+    setAnswers(prev => {
+      const next = { ...prev, [qId]: weight }
+      try { sessionStorage.setItem('saarthi_v2_answers', JSON.stringify(next)) } catch (e) {}
       return next
     })
   }
 
-  const handleSubmit = () => {
-    // Score calculation
-    const baseScore = Object.values(answers).reduce((acc, w) => acc + (Number(w) || 0), 0)
+  const allCurrentAnswered = currentQuestions.every(q => answers[q.id] !== undefined)
 
-    // If studying, also consider marks
-    let marksScore = 0
-    if (mode === 'studying' && marksPayload?.marks) {
-  const { math = 0, science = 0, english = 0 } = marksPayload.marks
-  // secondLanguage isn't a numeric mark in marks; check separate field on payload
-  const secondLang = marksPayload?.secondLanguage
-      // Weighted sum to bias towards STEM for engineering/medicine
-      const bias = marksPayload.goal
-  if (bias === 'engineering') marksScore = math * 0.5 + science * 0.4 + english * 0.1
-  else if (bias === 'medicine') marksScore = science * 0.6 + english * 0.3 + (math * 0.1)
-  else if (bias === 'commerce') marksScore = math * 0.4 + english * 0.3 + (secondLang ? 10 : 0)
-  else marksScore = english * 0.4 + (secondLang ? 10 : 0) + math * 0.2
-      marksScore = marksScore / 10 // scale down
+  const handleNext = () => {
+    if (currentStep < SECTIONS.length - 1) {
+      const nextStep = currentStep + 1
+      setCurrentStep(nextStep)
+      try { sessionStorage.setItem('saarthi_v2_step', nextStep.toString()) } catch (e) {}
+      window.scrollTo(0, 0)
+    } else {
+      handleSubmit()
     }
-
-    const total = baseScore + marksScore
-
-  // persist final computed score and clear answers (keep state for result page)
-  try { sessionStorage.setItem('saarthi_last_result', JSON.stringify({ mode, total, goal: marksPayload?.goal })) } catch (e) { }
-  try { sessionStorage.removeItem('saarthi_answers') } catch (e) { }
-  navigate('/result', { state: { mode, total, goal: marksPayload?.goal } })
   }
 
-  return (
-    <div className="card space-y-4">
-      <h2 className="text-xl font-semibold">{mode === 'studying' ? t('subject_quiz') : t('interest_quiz')}</h2>
-      {questions.map((q, idx) => (
-        <div key={idx} className="space-y-2">
-          <div className="font-medium">{q.question}</div>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {q.options.map((opt, i) => (
-              <label key={i} className={`border rounded p-2 cursor-pointer ${answers[idx] === opt.weight ? 'border-blue-600' : 'border-gray-200'}`}>
-                <input
-                  type="radio"
-                  name={`q-${idx}`}
-                  className="mr-2"
-                  onChange={() => handleSelect(idx, opt.weight)}
-                />
-                {opt.label}
-              </label>
-            ))}
-          </div>
-        </div>
-      ))}
+  const handleBack = () => {
+    if (currentStep > 0) {
+      const prevStep = currentStep - 1
+      setCurrentStep(prevStep)
+      try { sessionStorage.setItem('saarthi_v2_step', prevStep.toString()) } catch (e) {}
+      window.scrollTo(0, 0)
+    }
+  }
 
-      <button className="btn" disabled={!allAnswered} onClick={handleSubmit}>{t('see_results')}</button>
+  const handleSubmit = () => {
+    // Score calculation via assessmentScorerV2
+    const featurePayload = calculateV2Profile(assessmentData.questions, answers)
+    
+    // Clear session storage since we are done
+    try { 
+      sessionStorage.removeItem('saarthi_v2_answers')
+      sessionStorage.removeItem('saarthi_v2_step')
+    } catch (e) {}
+    
+    navigate('/result', { state: { payload: featurePayload } })
+  }
+
+  const options = [
+    { label: "Strongly Disagree", weight: 1 },
+    { label: "Disagree", weight: 2 },
+    { label: "Neutral", weight: 3 },
+    { label: "Agree", weight: 4 },
+    { label: "Strongly Agree", weight: 5 }
+  ]
+
+  return (
+    <div className="card space-y-6 max-w-4xl mx-auto">
+      <div className="flex justify-between items-center border-b pb-4">
+        <h2 className="text-2xl font-bold">{currentSection.title}</h2>
+        <span className="text-sm font-medium text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+          Step {currentStep + 1} of {SECTIONS.length}
+        </span>
+      </div>
+
+      <div className="w-full bg-gray-200 rounded-full h-2.5">
+        <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${((currentStep + 1) / SECTIONS.length) * 100}%` }}></div>
+      </div>
+
+      <div className="space-y-8 mt-6">
+        {currentQuestions.map((q) => (
+          <div key={q.id} className="space-y-3 p-4 bg-gray-50 rounded-lg">
+            <div className="font-medium text-lg text-gray-800">{q.question}</div>
+            <div className="grid gap-2 sm:grid-cols-5">
+              {options.map((opt, i) => (
+                <label 
+                  key={i} 
+                  className={`border rounded-lg p-3 text-center cursor-pointer transition-all ${
+                    answers[q.id] === opt.weight 
+                      ? 'border-blue-600 bg-blue-50 shadow-sm' 
+                      : 'border-gray-200 hover:border-blue-300 hover:bg-white'
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name={`q-${q.id}`}
+                    className="hidden"
+                    onChange={() => handleSelect(q.id, opt.weight)}
+                    checked={answers[q.id] === opt.weight}
+                  />
+                  <div className="text-sm font-medium">{opt.label}</div>
+                </label>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex justify-between pt-6 border-t">
+        <button 
+          className={`px-6 py-2 rounded-lg font-medium ${currentStep === 0 ? 'opacity-50 cursor-not-allowed bg-gray-200 text-gray-500' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+          onClick={handleBack}
+          disabled={currentStep === 0}
+        >
+          Back
+        </button>
+        <button 
+          className={`px-6 py-2 rounded-lg font-medium text-white ${!allCurrentAnswered ? 'opacity-50 cursor-not-allowed bg-blue-400' : 'bg-blue-600 hover:bg-blue-700'}`} 
+          disabled={!allCurrentAnswered} 
+          onClick={handleNext}
+        >
+          {currentStep === SECTIONS.length - 1 ? 'Generate Recommendations' : 'Next Section'}
+        </button>
+      </div>
     </div>
   )
 }

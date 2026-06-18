@@ -29,11 +29,12 @@ def load_resources():
         if os.path.exists(data_path):
             # We want unique occupations (drop the jitter rows for recommendation)
             df = pd.read_csv(data_path)
-            # Remove jitter duplicates by grouping by soc_code and taking mean of features
-            # Wait, easier to just drop duplicates on soc_code since base is first
             _dataset = df.drop_duplicates(subset=['soc_code']).reset_index(drop=True)
             if _feature_names:
                 _features_matrix = _dataset[_feature_names].values
+
+def to_snake_case(s):
+    return s.lower().replace(' ', '_')
 
 def generate_recommendations_v2(user_features: dict) -> dict:
     """
@@ -46,16 +47,32 @@ def generate_recommendations_v2(user_features: dict) -> dict:
     if not _model or not _feature_names or _dataset is None:
         return {"error": "AI resources not fully trained or loaded."}
         
-    # Build user vector exactly matching the model's expected feature order
+    # Build user vector matching the model's expected feature order
     user_vector = []
     for feat in _feature_names:
-        # Default to 5 if a feature is missing
-        user_vector.append(float(user_features.get(feat, 5.0)))
+        # Check for snake_case (new frontend) or Title Case (legacy)
+        val = user_features.get(to_snake_case(feat), user_features.get(feat, 5.0))
+        user_vector.append(float(val))
         
     user_vector_np = np.array(user_vector).reshape(1, -1)
     
+    # Generate Strengths
+    # Get indices of top 4 features
+    top_4_indices = np.argsort(user_vector)[::-1][:4]
+    strengths = []
+    for idx in top_4_indices:
+        feat = _feature_names[idx]
+        val = user_vector[idx]
+        if val >= 8.0:
+            strengths.append(f"Exceptional {feat}")
+        elif val >= 6.5:
+            strengths.append(f"Strong {feat}")
+        elif val >= 5.0:
+            strengths.append(f"Solid {feat}")
+        else:
+            strengths.append(f"Developing {feat}")
+    
     # Stage 1: Predict Top 3 Domains
-    # Get class probabilities
     proba = _model.predict_proba(user_vector_np)[0]
     classes = _model.classes_
     
@@ -82,11 +99,12 @@ def generate_recommendations_v2(user_features: dict) -> dict:
     
     results = {
         "top_domains": top_domains,
-        "recommendations": []
+        "careers": [],
+        "strengths": strengths
     }
     
     for _, row in top_occupations.iterrows():
-        results["recommendations"].append({
+        results["careers"].append({
             "soc_code": row["soc_code"],
             "title": row["occupation_title"],
             "domain": row["target_domain"],

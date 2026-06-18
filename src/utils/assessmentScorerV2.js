@@ -34,21 +34,15 @@ export function calculateV2Profile(questions, answers) {
   });
 
   // 2. Average the scores for each feature and scale to 1-10
-  // (Likert is 1-5, so we can multiply by 2 to get a 2-10 scale, 
-  // or use the formula: ((Average - 1) / 4) * 9 + 1 to properly scale 1-5 to 1-10)
-  
   const finalProfile = {};
+  
+  const toSnakeCase = (str) => str.toLowerCase().replace(/ /g, '_');
   
   for (const feature in featureScores) {
     const avgScore = featureScores[feature] / featureCounts[feature];
-    
-    // Scale 1-5 to 1-10 range
-    // Formula: Scaled = ((Original - Min) / (Max - Min)) * (NewMax - NewMin) + NewMin
-    // Scaled = ((avgScore - 1) / 4) * 9 + 1
     const scaledScore = ((avgScore - 1) / 4) * 9 + 1;
-    
-    // Round to 1 decimal place
-    finalProfile[feature] = Math.round(scaledScore * 10) / 10;
+    const snakeFeature = toSnakeCase(feature);
+    finalProfile[snakeFeature] = Math.round(scaledScore * 10) / 10;
   }
 
   // 3. Ensure all 30 features exist (default to 5.0 if completely missing)
@@ -60,8 +54,9 @@ export function calculateV2Profile(questions, answers) {
   ];
 
   EXPECTED_FEATURES.forEach(feat => {
-    if (finalProfile[feat] === undefined) {
-      finalProfile[feat] = 5.0; // Neutral default
+    const snakeFeature = toSnakeCase(feat);
+    if (finalProfile[snakeFeature] === undefined) {
+      finalProfile[snakeFeature] = 5.0; // Neutral default
     }
   });
 
